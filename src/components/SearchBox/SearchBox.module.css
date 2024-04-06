@@ -1,0 +1,27 @@
+.searchbox {
+    margin-bottom: 20px;
+    margin-top: 15px;
+ 
+}
+
+.searchlabel {
+    margin-left: 2px;
+    display: flex;
+    gap: 10px;
+    margin-bottom: 5px;
+    align-items: flex-start;
+}
+
+.searchicon {
+    font-size: 1.5rem; 
+}
+
+.searchinput {
+    display: flex;
+    width: 360px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    border: 1px solid #808080;
+}
