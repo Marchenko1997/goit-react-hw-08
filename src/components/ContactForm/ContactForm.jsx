@@ -6,7 +6,7 @@ import { IoPerson } from "react-icons/io5";
 import { FaPhone } from "react-icons/fa6";
 import { addContact } from '../../redux/contactsSlice';
 import { useDispatch } from 'react-redux';
-import { nanoid } from "nanoid";
+
 
 const FeedbackSchema = Yup.object().shape({
   name: Yup.string().min(3, 'User name must be at least 3 characters long!').max(50, 'User name must be less 50 characters long!').required('Please, enter your name! This field is required!'),
@@ -25,7 +25,7 @@ const ContactForm = () => {
 
   const handleSubmit = (values, { resetForm }) => {
     if (!values.name || !values.number) return;
-    dispatch(addContact({ id: nanoid(), name: values.name, number: values.number }));
+    dispatch(addContact({  name: values.name, number: values.number }));
     resetForm();
   };
 

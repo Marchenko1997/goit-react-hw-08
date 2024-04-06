@@ -1,7 +1,8 @@
-import PropTypes from "prop-types";
+
+import PropTypes from 'prop-types';
 import css from "./Contact.module.css";
 import { BsFillPersonFill } from "react-icons/bs";
-import { FaPhone } from "react-icons/fa6";
+import { FaPhone } from "react-icons/fa";
 
 const Contact = ({ contact, onDelete }) => {
   const { id, name, number } = contact;
@@ -30,9 +31,9 @@ Contact.propTypes = {
   contact: PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    number: PropTypes.string.isRequired,
-  }).isRequired, // Add .isRequired to make sure the prop is provided
-  onDelete: PropTypes.func.isRequired,
+    number: PropTypes.string.isRequired
+  }).isRequired,
+  onDelete: PropTypes.func.isRequired
 };
 
 export default Contact;
