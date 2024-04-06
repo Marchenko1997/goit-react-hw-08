@@ -2,7 +2,7 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useId } from 'react';
 import * as Yup from 'yup';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import css from './ContactForm.module.css';
 import { IoPerson } from "react-icons/io5";
 import { FaPhone } from "react-icons/fa6";
@@ -57,8 +57,8 @@ const ContactForm = () => {
     </Formik>
   );
 };
-ContactForm.propTypes = {
-    onAddContact: PropTypes.func.isRequired, 
-  };
+// ContactForm.propTypes = {
+//     onAddContact: PropTypes.func.isRequired, 
+//   };
 
 export default ContactForm;

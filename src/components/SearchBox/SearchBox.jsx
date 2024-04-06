@@ -1,5 +1,5 @@
 
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import css from './SearchBox.module.css';
 import { IoIosContacts } from "react-icons/io";
 import { useDispatch, useSelector } from 'react-redux';
@@ -23,9 +23,9 @@ const SearchBox = () => {
     );
   };
 
-  SearchBox.propTypes = { 
-    filter: PropTypes.string.isRequired, 
-    onFilterChange: PropTypes.func.isRequired, 
-  };
+  // SearchBox.propTypes = { 
+  //   filter: PropTypes.string.isRequired, 
+  //   onFilterChange: PropTypes.func.isRequired, 
+  // };
   
   export default SearchBox;
