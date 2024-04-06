@@ -23,7 +23,7 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: ['persist/PERSIST'], // Игнорируем проверку для действия 'persist/PERSIST'
+        ignoredActions: ['persist/PERSIST'], 
       },
     }),
 });
