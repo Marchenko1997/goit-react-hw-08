@@ -13,13 +13,19 @@ const rootReducer = combineReducers({
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["contacts"], // Зберігаємо лише стан поля contacts
+  whitelist: ["contacts"],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
   reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: ['persist/PERSIST'], // Игнорируем проверку для действия 'persist/PERSIST'
+      },
+    }),
 });
 
 export const persistor = persistStore(store);
