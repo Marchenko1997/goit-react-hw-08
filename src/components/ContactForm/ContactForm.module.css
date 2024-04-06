@@ -53,3 +53,13 @@
     background: #1677ff;
     box-shadow: 0 2px 0 rgba(5, 145, 255, 0.1);
 }
+
+.error {
+    width: 300px;
+    padding: 8px 16px;
+    background-color: #ea9e9e;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 8px;
+    border-bottom: 2px solid hsl(0, 48%, 45%);
+}

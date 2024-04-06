@@ -1,12 +1,22 @@
 import Contact from "../Contact/Contact";
 import PropTypes from 'prop-types';
-import css from './ContactList.module.css'
-const ContactList = ({ contacts, onDelete }) => {
+import css from './ContactList.module.css';
+import { useSelectors, useDispatch} from 'react-redux';
+import { selectFilter} from '../../redux/selectors.js';
+import { deleteContact } from "../../redux/contactsSlice";
+const ContactList = () => {
+  const dispatch = useDispatch();
+  const contacts = useSelectors(selectFilter);
+
+  const handleDelete =(id) => {
+    dispatch(deleteContact(id));
+  }
+
     return (
       <ul className={css.contactlist}>
         {contacts.map(contact => (
           <li key={contact.id} className={css.contactitem}>
-            {contact && <Contact contact={contact} onDelete={onDelete} />}
+            {contact && <Contact contact={contact} onDelete={handleDelete} />}
           </li>
         ))}
       </ul>

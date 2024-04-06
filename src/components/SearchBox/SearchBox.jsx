@@ -2,12 +2,16 @@
 import PropTypes from 'prop-types';
 import css from './SearchBox.module.css';
 import { IoIosContacts } from "react-icons/io";
-const SearchBox = ({filter, onFilterChange}) => {
-   
+import { useDispatch, useSelector } from 'react-redux';
+import {changeFilter} from '../../redux/filtersSlice';
+import { selectFilter } from '../../redux/selectors';
+const SearchBox = () => {
+   const dispatch = useDispatch();
+   const filter = useSelector(selectFilter);
   
-    const handleChange = (evt) => {
-      const text=evt.target.value;
-      onFilterChange(text);
+    const handleChange = (event) => {
+     const text = event.target.value;
+     dispatch(changeFilter(text));
     };
   
     return (
