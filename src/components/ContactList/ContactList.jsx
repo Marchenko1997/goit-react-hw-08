@@ -14,11 +14,12 @@ const ContactList = () => {
 
     return (
       <ul className={css.contactlist}>
-        {contacts.map(contact => (
-          <li key={contact.id} className={css.contactitem}>
-            {contact && <Contact contact={contact} onDelete={handleDelete} />}
-          </li>
-        ))}
+     {Array.isArray(contacts) && contacts.map(contact => (
+  <li key={contact.id} className={css.contactitem}>
+    {contact && <Contact contact={contact} onDelete={handleDelete} />}
+  </li>
+))}
+
       </ul>
     );
   };
