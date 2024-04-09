@@ -13,7 +13,7 @@ const SearchBox = () => {
      dispatch(changeFilter(text));
     };
 
-    console.log("Filter value:", filter); // Добавленный console.log
+    
   
     return (
       <div className={css.searchbox}>
