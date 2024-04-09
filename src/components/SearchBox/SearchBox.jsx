@@ -12,6 +12,8 @@ const SearchBox = () => {
      const text = event.target.value;
      dispatch(changeFilter(text));
     };
+
+    console.log("Filter value:", filter); // Добавленный console.log
   
     return (
       <div className={css.searchbox}>
