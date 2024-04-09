@@ -8,10 +8,9 @@ import { selectFilter } from "../../redux/selectors.js";
 const ContactList = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
-  const filter = useSelector(selectFilter); // Добавлено получение значения фильтра
+  const filter = useSelector(selectFilter); 
 
 
-  // Фильтрация контактов на основе значения фильтра
   const filteredContacts = contacts.filter(contact =>
     contact.name.toLowerCase().includes(filter.toLowerCase())
   );
