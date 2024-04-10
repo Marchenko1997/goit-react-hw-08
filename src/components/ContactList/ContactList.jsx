@@ -12,8 +12,10 @@ const ContactList = () => {
 
 
   const filteredContacts = contacts.filter(contact =>
+    typeof contact.name === 'string' && 
     contact.name.toLowerCase().includes(filter.toLowerCase())
   );
+  
 
 
 

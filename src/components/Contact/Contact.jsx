@@ -3,12 +3,14 @@ import PropTypes from 'prop-types';
 import css from "./Contact.module.css";
 import { BsFillPersonFill } from "react-icons/bs";
 import { FaPhone } from "react-icons/fa";
+import { useDispatch} from "react-redux";
 
 const Contact = ({ contact, onDelete }) => {
   const { id, name, number } = contact;
+  const dispatch = useDispatch();
 
   const handleDelete = () => {
-    onDelete(id);
+    dispatch(onDelete(id));
   };
 
   return (
