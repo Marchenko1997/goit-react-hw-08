@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import css from './ContactForm.module.css';
 import { IoPerson } from "react-icons/io5";
 import { FaPhone } from "react-icons/fa6";
-import { addContact } from '../../redux/contactsSlice';
+import { addContactAsync } from '../../redux/contactsOps';
 import { useDispatch } from 'react-redux';
 
 
@@ -25,7 +25,7 @@ const ContactForm = () => {
 
   const handleSubmit = (values, { resetForm }) => {
     if (!values.name || !values.number) return;
-    dispatch(addContact({  name: values.name, number: values.number }));
+    dispatch(addContactAsync({  name: values.name, number: values.number }));
     resetForm();
   };
 
