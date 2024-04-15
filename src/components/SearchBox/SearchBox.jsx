@@ -3,10 +3,10 @@ import css from './SearchBox.module.css';
 import { IoIosContacts } from "react-icons/io";
 import { useDispatch, useSelector } from 'react-redux';
 import {changeFilter} from '../../redux/filtersSlice';
-import { selectFilter } from '../../redux/selectors';
+import { selectNameFilter } from '../../redux/selectors';
 const SearchBox = () => {
    const dispatch = useDispatch();
-   const filter = useSelector(selectFilter);
+   const filter = useSelector(selectNameFilter);
   
     const handleChange = (event) => {
      const text = event.target.value;
