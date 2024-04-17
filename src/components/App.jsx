@@ -2,20 +2,20 @@
 // import ContactList from "./components/ContactList/ContactList";
 // import SearchBox from "./components/SearchBox/SearchBox";
 import {Route, Routes} from "react-router-dom";
-import { Layout } from './Layout';
-import { PrivateRoute } from './PrivateRoute';
-import { RestrictedRoute } from './RestrictedRoute';
+import { Layout } from '../Layout';
+import { PrivateRoute } from '../PrivateRoute';
+import { RestrictedRoute } from '../RestrictedRoute';
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, lazy } from "react";
-import { refreshUser } from "./redux/auth/operations";
-import { selectIsRefreshing } from "./redux/auth/selectors";
+import { refreshUser } from "../redux/auth/operations";
+import { selectIsRefreshing } from "../redux/auth/selectors";
 
 import "./App.css";
 
-const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
+const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
 const RegisterPage = lazy(() => import('./pages/RegisterPage/RegisterPage'));
-const LogInPage = lazy(() => import('./pages/LogInPage/LogInPage'));
-const TasksPage = lazy(() => import('./pages/TasksPage/TasksPage'));
+const LogInPage = lazy(() => import('../pages/LogInPage/LogInPage'));
+const TasksPage = lazy(() => import('../pages/TasksPage/TasksPage'));
 
 
 export const App =() => {
