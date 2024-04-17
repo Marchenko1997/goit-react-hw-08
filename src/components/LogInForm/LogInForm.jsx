@@ -5,36 +5,38 @@ import css from "./LogInForm.module.css";
 export const LogInForm = () => {
     const dispatch = useDispatch();
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const form = e.currentTarget;
-        dispatch(
-            logIn({
-                email: form.elements.email.value,
-                password: form.elements.password.value,
-            })
-        )
-        .unwrap()
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+
+    dispatch(
+      logIn({
+        email: form.elements.email.value,
+        password: form.elements.password.value,
+      })
+    )
+      .unwrap()
       .then(() => {
         console.log('login success');
       })
       .catch(() => {
         console.log('login error');
       });
-        form.reset();
-    };
 
-    return (
-        <form className={css.form} onSubmit={handleSubmit} autoComplete="off">
-            <label className={css.label}>
-                Email
-                <input className={css.input} type="email" name="email" />
-            </label>
-            <label className={css.label}>
-                Password
-                <input className={css.input} type="password" name="password" />
-            </label>
-            <button className={css.btn} type="submit"></button>
-        </form>
-    );
+    form.reset();
+  };
+
+  return (
+    <form className={css.form} onSubmit={handleSubmit} autoComplete="off">
+      <label className={css.label}>
+        Email
+        <input type="email" name="email" />
+      </label>
+      <label className={css.label}>
+        Password
+        <input type="password" name="password" />
+      </label>
+      <button type="submit">Log In</button>
+    </form>
+  );
 };
