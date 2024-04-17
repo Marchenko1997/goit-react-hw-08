@@ -1,15 +1,15 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import DocumentTitle from "../../components/DocumentTitle";
-import {ContactList} from "../../components/ContactList/ContactList";
+import ContactList from "../../components/ContactList/ContactList";
 import { TaskEditor } from "../../components/TaskEditor/TaskEditor";
 import {fetchContactsAsync} from "../../redux/contacts/operations";
-import { setIsLoading } from "../../redux/contacts/slice";
+import { selectIsLoading } from "../../redux/contacts/selectors";
 
 export default function TasksPage() {
 
     const dispatch = useDispatch();
-    const isLoading = useSelector(setIsLoading);
+    const isLoading = useSelector(selectIsLoading);
 
     useEffect(() => {
         dispatch(fetchContactsAsync());
