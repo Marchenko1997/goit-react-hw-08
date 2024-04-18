@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import css from './ContactForm.module.css';
 import { IoPerson } from "react-icons/io5";
 import { FaPhone } from "react-icons/fa6";
-import { addContactAsync } from '../../redux/contactsOps';
+import { addContactAsync } from '../../redux/contacts/operations';
 import { useDispatch } from 'react-redux';
 
 

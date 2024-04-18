@@ -1,5 +1,5 @@
 import { createSlice} from '@reduxjs/toolkit';
-// import { fetchContactsAsync, addContactAsync, deleteContactAsync } from "./contactsOps";
+import { fetchContactsAsync, addContactAsync, deleteContactAsync } from "./operations";
 
 
 const initialState = {
@@ -21,27 +21,27 @@ const handleAsyncErrror = (state, action) => {
 const contactsSlice = createSlice({
     name: 'contacts',
     initialState,
-    // extraReducers: (builder) =>{
-    //     builder
-    //     .addCase(fetchContactsAsync.pending, startAsyncOperation)
-    //    .addCase(fetchContactsAsync.fulfilled,(state, action) => {
-    //         state.loading = false;
-    //         state.items = action.payload;
-    //     })
-    //     .addCase(fetchContactsAsync.rejected, handleAsyncErrror)
-    //    .addCase(addContactAsync.pending, startAsyncOperation)
-    //    .addCase(addContactAsync.fulfilled, (state, action)=> {
-    //     state.loading = false;
-    //     state.items.push(action.payload);
-    //    })
-    //    .addCase(addContactAsync.rejected, handleAsyncErrror)
-    //    .addCase(deleteContactAsync.pending, startAsyncOperation)
-    //    .addCase(deleteContactAsync.fulfilled, (state, action) => {
-    //     state.loading = false;
-    //     state.items = state.items.filter(contact => contact.id!== action.payload.id)
-    //    })
-    //    .addCase(deleteContactAsync.rejected, handleAsyncErrror)
-    // },
+    extraReducers: (builder) =>{
+        builder
+        .addCase(fetchContactsAsync.pending, startAsyncOperation)
+       .addCase(fetchContactsAsync.fulfilled,(state, action) => {
+            state.loading = false;
+            state.items = action.payload;
+        })
+        .addCase(fetchContactsAsync.rejected, handleAsyncErrror)
+       .addCase(addContactAsync.pending, startAsyncOperation)
+       .addCase(addContactAsync.fulfilled, (state, action)=> {
+        state.loading = false;
+        state.items.push(action.payload);
+       })
+       .addCase(addContactAsync.rejected, handleAsyncErrror)
+       .addCase(deleteContactAsync.pending, startAsyncOperation)
+       .addCase(deleteContactAsync.fulfilled, (state, action) => {
+        state.loading = false;
+        state.items = state.items.filter(contact => contact.id!== action.payload.id)
+       })
+       .addCase(deleteContactAsync.rejected, handleAsyncErrror)
+    },
 });
 
 export const { addContact, deleteContact } = contactsSlice.actions;
