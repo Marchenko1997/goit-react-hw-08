@@ -18,16 +18,22 @@ export const selectError = (state) => {
 };
 
 export const selectNameFilter = (state) => {
-    console.log("Selecting name filter:", state.filters);
-    return state.filters;
-};
+    console.log("Selecting name filter:", state.filters ? state.filters.name : '');
+    return state.filters ? state.filters.name : '';
+  };
+  
+
+
 
 export const selectFilteredContacts = createSelector(
     [selectContacts, selectNameFilter],
     (contacts, filter) => {
-        console.log("Current filter value inside selector:", filter);
-        return contacts.filter(contact => {
-            return typeof contact.name === 'string'
-        });
+      if (filter.length > 0) {
+        return contacts.filter(({ name }) =>
+          name.toLowerCase().includes(filter.trim().toLowerCase())
+        );
+      } else {
+        return contacts;
+      }
     }
-);
+  );

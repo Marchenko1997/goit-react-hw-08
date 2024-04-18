@@ -1,5 +1,3 @@
-// ContactList.jsx
-
 import Contact from "../Contact/Contact";
 import css from "./ContactList.module.css";
 import { useSelector, useDispatch } from "react-redux";
@@ -19,12 +17,14 @@ const ContactList = () => {
       {Array.isArray(filteredContacts) &&
         filteredContacts.map((contact) => (
           <li key={contact.id} className={css.contactitem}>
-            <Contact
-              id={contact.id}
-              name={contact.name}
-              number={contact.number}
-              handleDelete={() => handleDelete(contact.id)}
-            />
+            {contact.name && contact.number && (
+              <Contact
+                id={contact.id}
+                name={contact.name}
+                number={contact.number}
+                handleDelete={() => handleDelete(contact.id)}
+              />
+            )}
           </li>
         ))}
     </ul>
