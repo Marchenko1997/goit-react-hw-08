@@ -1,18 +1,19 @@
-
 import PropTypes from 'prop-types';
 import css from "./Contact.module.css";
 import { BsFillPersonFill } from "react-icons/bs";
 import { FaPhone } from "react-icons/fa";
 import { useDispatch } from "react-redux";
-import {deleteContactAsync} from "../../redux/contacts/operations";
+import { deleteContactAsync } from "../../redux/contacts/operations";
 
 
-const Contact = ({ id, name, number }) => {
+const Contact = ({ id, name = '', number = '' }) => {
   const dispatch = useDispatch();
 
-  const handleDelete = () => dispatch(deleteContactAsync(id))
-
-
+  const handleDelete = () => {
+    if (id) {
+      dispatch(deleteContactAsync(id));
+    }
+  }
 
   return (
     <div>
@@ -31,7 +32,7 @@ const Contact = ({ id, name, number }) => {
 };
 
 Contact.propTypes = {
-  id: PropTypes.string.isRequired, 
+  id: PropTypes.string, 
   name: PropTypes.string.isRequired,
   number: PropTypes.string.isRequired,
 };
