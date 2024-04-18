@@ -18,7 +18,7 @@ export default function СontactsPage() {
 
     return (
         <>
-            <DocumentTitle>Your contacts</DocumentTitle>
+            <DocumentTitle> Contacts</DocumentTitle>
             <ContactForm />
             {isLoading && <div>Loading...</div>}
             <ContactList />

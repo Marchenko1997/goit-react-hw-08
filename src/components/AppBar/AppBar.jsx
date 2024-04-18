@@ -1,5 +1,5 @@
 import { Navigation } from "../Navigation/Navigation";
-import { UserMenue } from "../UserMenue/UserMenue";
+import { UserMenu } from "../UserMenu/UserMenu";
 import { AuthNav } from "../AuthNav/AuthNav";
 import { useSelector } from "react-redux";
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
@@ -9,7 +9,7 @@ export const AppBar = () => {
     return (
         <header>
             <Navigation />
-            {isLoggedIn ? <UserMenue /> : <AuthNav />}
+            {isLoggedIn ? <UserMenu /> : <AuthNav />}
         </header>
     );
 }
