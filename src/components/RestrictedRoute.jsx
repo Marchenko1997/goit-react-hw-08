@@ -1,7 +1,7 @@
 import { Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectIsLoggedIn } from "../redux/auth/selectors";
-// import PropTypes from 'prop-types';
+
 
 export const RestrictedRoute = ({ component, redirectTo = "/" }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -9,7 +9,3 @@ export const RestrictedRoute = ({ component, redirectTo = "/" }) => {
   return isLoggedIn ? <Navigate to={redirectTo} /> : component;
 };
 
-// RestrictedRoute.propTypes = {
-//     component: PropTypes.elementType.isRequired, 
-//     redirectTo: PropTypes.string, 
-//   };
