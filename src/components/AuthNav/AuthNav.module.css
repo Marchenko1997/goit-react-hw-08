@@ -1,0 +1,18 @@
+.authcontainer {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding-right: 16px;
+}
+
+.authlink {
+    color: #fff;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.authlink:hover,
+.authlink:focus {
+    color: #ceebf8;
+}
