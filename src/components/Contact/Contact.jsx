@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import css from "./Contact.module.css";
 import { BsFillPersonFill } from "react-icons/bs";
@@ -8,12 +9,22 @@ import { deleteContactAsync } from "../../redux/contacts/operations";
 
 const Contact = ({ id, name = '', number = '' }) => {
   const dispatch = useDispatch();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleDelete = () => {
     if (id) {
-      dispatch(deleteContactAsync(id));
+      setIsModalOpen(true);
     }
-  }
+  };
+
+  const confirmDelete = () => {
+    dispatch(deleteContactAsync(id));
+    setIsModalOpen(false);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <div>
@@ -27,15 +38,25 @@ const Contact = ({ id, name = '', number = '' }) => {
       <button type='button' onClick={handleDelete} aria-label='delete' className={css.btndelete}>
         Delete
       </button>
+
+      {isModalOpen && (
+        <div className={css.modal}>
+          <div className={css.modalContent}>
+            <p>Are you sure you want to delete {name}?</p>
+            <button onClick={confirmDelete} className={css.yesButton}>Yes</button>
+            <button onClick={closeModal} className={css.noButton}>No</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
+
 
 Contact.propTypes = {
   id: PropTypes.string, 
   name: PropTypes.string.isRequired,
   number: PropTypes.string.isRequired,
 };
-
 
 export default Contact;
