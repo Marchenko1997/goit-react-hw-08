@@ -1,3 +1,9 @@
 .title {
     margin-left: 30px;
 }
+
+.description {
+    padding-left: 30px;
+    font-size: 20px;
+    font-weight: 500;
+}

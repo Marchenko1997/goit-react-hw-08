@@ -7,6 +7,7 @@ export default function HomePage() {
       <DocumentTitle>Phonebook</DocumentTitle>
       <div className={css.container}>
         <h1 className={css.title}>Welcome to Phonebook</h1>
+        <p className={css.description}> This app is designed to help your brain not remember numbers, but write them down.</p>
       </div>
     </>
   );
