@@ -9,7 +9,7 @@
     padding-left: 60px;
 }
 .contactitem {
-    width: 160px;
+    width: 300px;
     border: 1px solid #808080;
     border-radius: 6px;
     display: flex;
@@ -17,7 +17,7 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 8px;
+    padding: 16px;
     transition: all 0.2s ease-in-out;
 }
 

@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import css from "./ContactEditForm.module.css";
 import { IoPerson } from "react-icons/io5";
 import { FaPhone } from "react-icons/fa6";
+import { IoMdCloseCircleOutline } from "react-icons/io";
 
 const FeedbackSchema = Yup.object().shape({
     name: Yup.string()
@@ -52,6 +53,7 @@ const ContactEditForm = ({ id, name, number, onCancel, isOpen, onRequestClose })
       >
         {({ isSubmitting }) => (
           <Form className={css.form}>
+            <div className={css.formcontainer}>
             <div className={css.fieldname}>
               <label htmlFor="name" className={css.labelname}>
                 {" "}
@@ -90,9 +92,9 @@ const ContactEditForm = ({ id, name, number, onCancel, isOpen, onRequestClose })
             </button>
 
             <button type="button" onClick={onCancel} className={css.btncancel}>
-              Cancel
+              <IoMdCloseCircleOutline className={css.closeicon} />
             </button>
-
+            </div>
             <Toaster />
           </Form>
         )}

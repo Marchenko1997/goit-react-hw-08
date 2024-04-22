@@ -25,15 +25,23 @@
   .form {
     display: flex;
     flex-direction: column;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+
+  .formcontainer {
+    padding: 20px;
   }
   
   .fieldname {
     margin-bottom: 15px;
+  
   }
   
   .labelname {
     display: flex;
     align-items: center;
+    color: black;
+    gap: 8px;
   }
   
   .inputname {
@@ -41,11 +49,16 @@
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    width: 260px;
+    background-color: #fff;
   }
   
   .labelnumber {
     display: flex;
     align-items: center;
+    color: black;
+    gap: 8px;
+    
   }
   
   .inputnumber {
@@ -53,6 +66,8 @@
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    width: 260px;
+    background-color: #fff;
   }
   
   .error {
@@ -61,22 +76,38 @@
   }
   
   .btnaddcontact {
-    margin-top: 10px;
-    padding: 8px 12px;
+    margin-top: 20px;
+    padding: 12px 16px;
     background-color: #007bff;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    max-width: fit-content;
+  }
+  
+  .btnaddcontact:hover,
+  .btnaddcontact:focus {
+    background-color: #0069d9;
   }
   
   .btncancel {
-    margin-top: 10px;
-    padding: 8px 12px;
-    background-color: #007bff;
+    margin: 6px 6px;
+    padding: 4px 6px 4px 6px;
+    background-color:#fff;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    position: fixed;
+  top: 20px; 
+  right: 20px; 
+  z-index: 9999; 
   }
   
+  .closeicon{
+    width: 20px;
+    height: 20px;
+    color: #000;
+
+  }

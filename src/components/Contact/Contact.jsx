@@ -8,6 +8,8 @@ import { deleteContactAsync } from "../../redux/contacts/operations";
 import { toast } from 'react-hot-toast';
 import Modal from 'react-modal';
 import ContactEditForm from "../ContactEditForm/ContactEditForm";
+import { MdOutlineAutoDelete } from "react-icons/md";
+import { MdDeleteForever } from "react-icons/md";
 
 Modal.setAppElement('#root');
 
@@ -18,7 +20,7 @@ const Contact = ({ id, name = '', number = '' }) => {
 
   const handleDelete = () => {
     setIsDeleteModalOpen(true);
-    setIsEditFormOpen(false); // Закрываем другое модальное окно при открытии этого
+    setIsEditFormOpen(false); 
   };
 
   const confirmDelete = () => {
@@ -68,16 +70,19 @@ const Contact = ({ id, name = '', number = '' }) => {
       >
         <div className={css.modalOverlay} onClick={closeDeleteModal}>
           <div className={css.modalContent}>
-          <p className={css.modalText}>Are you sure you want to delete {name}?</p>
+
+          <p className={css.modalText}>Are you sure you want to delete {name}?
+       </p>
+           
             <div className={css.modalButtons}>
               <button onClick={confirmDelete} className={css.yesButton}>
-                Yes
+              <MdOutlineAutoDelete className={css.deleteIcon} />
               </button>
               <button
                 onClick={closeDeleteModal}
                 className={css.noButton}
               >
-                No
+              <MdDeleteForever className={css.deleteIcontwo} />
               </button>
             </div>
           </div>
