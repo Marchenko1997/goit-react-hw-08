@@ -1,6 +1,4 @@
-// import ContactForm from "./components/ContactForm/ContactForm";
-// import ContactList from "./components/ContactList/ContactList";
-// import SearchBox from "./components/SearchBox/SearchBox";
+
 import {Route, Routes} from "react-router-dom";
 import { Layout } from './Layout';
 import { PrivateRoute } from './PrivateRoute';
@@ -14,7 +12,7 @@ import { selectIsRefreshing } from "../redux/auth/selectors";
 
 const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
 const RegisterPage = lazy(() => import('../pages/RagisterPage/RagisterPage'));
-const LogInPage = lazy(() => import('../pages/LogInPage/LoginPage'));
+const LogInPage = lazy(() => import('../pages/LogInPage/LogInPage'));
 const ContactsPage = lazy(() => import('../pages/СontactsPage/СontactsPage'));
 
 
