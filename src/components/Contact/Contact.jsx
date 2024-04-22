@@ -1,4 +1,3 @@
-// Contact.jsx
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import css from "./Contact.module.css";
@@ -7,33 +6,29 @@ import { FaPhone } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { deleteContactAsync } from "../../redux/contacts/operations";
 import { toast } from 'react-hot-toast';
-import ContactEditForm from '../ContactEditForm/ContactEditForm'; // Добавлен импорт нового компонента
+import Modal from 'react-modal';
+import ContactEditForm from "../ContactEditForm/ContactEditForm";
+
+Modal.setAppElement('#root');
 
 const Contact = ({ id, name = '', number = '' }) => {
   const dispatch = useDispatch();
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isEditFormOpen, setIsEditFormOpen] = useState(false);
 
-  
-
   const handleDelete = () => {
-    if (id) {
-      setIsModalOpen(true);
-    }
+    setIsDeleteModalOpen(true);
+    setIsEditFormOpen(false); // Закрываем другое модальное окно при открытии этого
   };
 
   const confirmDelete = () => {
     dispatch(deleteContactAsync(id));
-    setIsModalOpen(false);
+    setIsDeleteModalOpen(false);
     toast.success('Contact deleted successfully.');
   };
 
-  const openEditForm = () => { // Функция для открытия формы редактирования
-    setIsEditFormOpen(true);
-  };
-
-  const closeEditForm = () => { // Функция для закрытия формы редактирования
-    setIsEditFormOpen(false);
+  const closeDeleteModal = () => {
+    setIsDeleteModalOpen(false);
   };
 
   return (
@@ -45,38 +40,66 @@ const Contact = ({ id, name = '', number = '' }) => {
         <FaPhone /> {number}
       </p>
 
-      <button type='button' onClick={handleDelete} aria-label='delete' className={css.btndelete}>
+      <button
+        type='button'
+        onClick={handleDelete}
+        aria-label='delete'
+        className={css.btndelete}
+      >
         Delete
       </button>
 
-      <button type='button' onClick={openEditForm} aria-label='edit' className={css.btnedit}>
+      <button
+        type='button'
+        onClick={() => setIsEditFormOpen(true)}
+        aria-label='edit'
+        className={css.btnedit}
+      >
         Edit
       </button>
 
-      {isEditFormOpen && ( // Отображение формы редактирования, если isEditFormOpen равно true
+      <Modal
+        isOpen={isDeleteModalOpen}
+        onRequestClose={closeDeleteModal}
+        className={css.modal}
+        overlayClassName={css.overlay}
+        contentLabel="Delete Contact Modal"
+    
+      >
+        <div className={css.modalOverlay} onClick={closeDeleteModal}>
+          <div className={css.modalContent}>
+          <p className={css.modalText}>Are you sure you want to delete {name}?</p>
+            <div className={css.modalButtons}>
+              <button onClick={confirmDelete} className={css.yesButton}>
+                Yes
+              </button>
+              <button
+                onClick={closeDeleteModal}
+                className={css.noButton}
+              >
+                No
+              </button>
+            </div>
+          </div>
+        </div>
+      </Modal>
+
+      {isEditFormOpen && (
         <ContactEditForm
           id={id}
           name={name}
           number={number}
-          onCancel={closeEditForm} // Передаем функцию для закрытия формы редактирования
+          onCancel={() => setIsEditFormOpen(false)}
+          isOpen={isEditFormOpen}
+          onRequestClose={() => setIsEditFormOpen(false)}
         />
-      )}
-
-      {isModalOpen && (
-        <div className={css.modal}>
-          <div className={css.modalContent}>
-            <p>Are you sure you want to delete {name}?</p>
-            <button onClick={confirmDelete} className={css.yesButton}>Yes</button>
-            <button onClick={() => setIsModalOpen(false)} className={css.noButton}>No</button>
-          </div>
-        </div>
       )}
     </div>
   );
 };
 
 Contact.propTypes = {
-  id: PropTypes.string, 
+  id: PropTypes.string,
   name: PropTypes.string.isRequired,
   number: PropTypes.string.isRequired,
 };

@@ -8,6 +8,12 @@ import "./index.css";
 import { Provider } from "react-redux";
 import { store, persistor } from "./redux/store.js";
 import 'modern-normalize';
+import Modal from 'react-modal';
+
+const appElement = document.getElementById("root");
+
+Modal.setAppElement(appElement);
+
 
 
 

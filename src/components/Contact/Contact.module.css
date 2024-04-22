@@ -22,4 +22,55 @@
   gap: 5px;
  }
 
- 
+ .modal {
+
+ }
+
+ .overlay {
+
+ }
+ .modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContent {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+}
+
+.modalText {
+  color: black;
+}
+
+.modalButtons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.yesButton,
+.noButton {
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.yesButton {
+  background-color: #4caf50;
+  color: #fff;
+}
+
+.noButton {
+  background-color: #f44336;
+  color: #fff;
+}
