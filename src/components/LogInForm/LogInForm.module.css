@@ -36,8 +36,8 @@
     transition: background-color 0.3s ease-in-out;
 }
 
-.btnaddcontact:hover,
-.btnaddcontact:focus {
+.btn:hover,
+.btn:focus {
     background-color: #0d5ab3;
 }
 
