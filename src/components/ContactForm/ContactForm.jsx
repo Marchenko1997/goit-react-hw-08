@@ -1,3 +1,4 @@
+// Для ContactForm.jsx
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import css from './ContactForm.module.css';
@@ -6,7 +7,7 @@ import { FaPhone } from "react-icons/fa6";
 import { addContactAsync } from '../../redux/contacts/operations';
 import { useDispatch } from 'react-redux';
 import { useId } from 'react'; 
-
+import toast, { Toaster } from 'react-hot-toast';
 
 const FeedbackSchema = Yup.object().shape({
   name: Yup.string().min(3, 'User name must be at least 3 characters long!').max(50, 'User name must be less than 50 characters long!').required('Please, enter your name! This field is required!'),
@@ -32,8 +33,14 @@ const ContactForm = () => {
       return;
     }
 
-    dispatch(addContactAsync({ name, number }));
-    resetForm();
+    dispatch(addContactAsync({ name, number }))
+      .then(() => {
+        toast.success('Contact added successfully.');
+        resetForm();
+      })
+      .catch(() => {
+        toast.error('Failed to add contact. Please try again later.');
+      });
   };
 
   return (
@@ -52,6 +59,8 @@ const ContactForm = () => {
             <ErrorMessage name="number" component="div" className={css.error} />
           </div>
           <button type="submit" className={css.btnaddcontact} disabled={isSubmitting}>Add contact</button>
+
+          <Toaster />
         </Form>
       )}
     </Formik>

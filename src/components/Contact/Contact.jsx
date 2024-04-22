@@ -5,7 +5,7 @@ import { BsFillPersonFill } from "react-icons/bs";
 import { FaPhone } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { deleteContactAsync } from "../../redux/contacts/operations";
-
+import { toast } from 'react-hot-toast'; // Импортируем функцию toast
 
 const Contact = ({ id, name = '', number = '' }) => {
   const dispatch = useDispatch();
@@ -20,6 +20,8 @@ const Contact = ({ id, name = '', number = '' }) => {
   const confirmDelete = () => {
     dispatch(deleteContactAsync(id));
     setIsModalOpen(false);
+    // Отображаем уведомление об успешном удалении контакта
+    toast.success('Contact deleted successfully.');
   };
 
   const closeModal = () => {
