@@ -2,7 +2,7 @@
 import { IoIosContacts } from "react-icons/io";
 import { useDispatch, useSelector } from 'react-redux';
 import { changeNameFilter, changePhoneFilter } from '../../redux/filters/slice';
-import { selectNameFilter, selectPhoneFilter } from '../../redux/contacts/selectors';
+import { selectNameFilter, selectPhoneFilter } from '../../redux/filters/selectors';
 import css from './SearchBox.module.css';
 
 const SearchBox = () => {
