@@ -13,7 +13,7 @@ import { selectIsRefreshing } from "../redux/auth/selectors";
 const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
 const RegisterPage = lazy(() => import('../pages/RegisterPage/RegisterPage'));
 const LogInPage = lazy(() => import('../pages/LogInPage/LogInPage'));
-const ContactsPage = lazy(() => import('../pages/СontactsPage/СontactsPage'));
+const ContactsPage = lazy(() => import('../pages/ContactsPage/ContactsPage'));
 
 
 export const App =() => {
