@@ -49,13 +49,13 @@ const ContactForm = () => {
         <Form className={css.form}>
           <div className={css.fieldname}>
             <label htmlFor={nameFieldId} className={css.labelname} > <IoPerson />Name</label>
-            <Field type="text" name="name" id={nameFieldId} autoComplete="name" className={css.inputname} />
+            <Field type="text" name="name" id={nameFieldId} autoComplete="name" placeholder="Enter your name" className={css.inputname} />
             <ErrorMessage name="name" component="div" className={css.error} />
           </div>
 
           <div>
             <label htmlFor={numberFieldId} className={css.labelnumber}> <FaPhone />Number</label>
-            <Field type="text" name="number" id={numberFieldId} autoComplete="tel" className={css.inputnumber} />
+            <Field type="text" name="number" id={numberFieldId} autoComplete="tel" placeholder="Enter your number" className={css.inputnumber} />
             <ErrorMessage name="number" component="div" className={css.error} />
           </div>
           <button type="submit" className={css.btnaddcontact} disabled={isSubmitting}>Add contact</button>

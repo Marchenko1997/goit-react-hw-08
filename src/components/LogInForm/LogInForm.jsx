@@ -43,12 +43,12 @@ export const LogInForm = () => {
         <Form className={css.form}>
           <div>
             <label className={css.label} htmlFor="email" ><MdEmail />Email</label>
-            <Field type="email" name="email" className={css.input} />
+            <Field type="email" name="email" placeholder="Enter your email" className={css.input} />
             <ErrorMessage name="email" component="div" className={css.error} />
           </div>
           <div>
             <label className={css.label} htmlFor="password" ><RiLockPasswordFill />Password</label>
-            <Field type="password" name="password" className={css.input} />
+            <Field type="password" name="password" placeholder="Enter your password" className={css.input} />
             <ErrorMessage name="password" component="div" className={css.error} />
           </div>
           <button type="submit" disabled={isSubmitting} className={css.btn}>Log In</button>

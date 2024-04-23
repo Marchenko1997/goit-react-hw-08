@@ -36,15 +36,15 @@ export const RegisterForm = () => {
     >
       <Form className={css.form}>
         <label className={css.label} htmlFor="name" ><IoPersonAdd /> Username</label>
-        <Field type="text" id="name" name="name" className={css.input} />
+        <Field type="text" id="name" name="name" placeholder="Enter your name" className={css.input} />
         <ErrorMessage name="name" component="div" className={css.error} />
 
         <label className={css.label} htmlFor="email" ><MdEmail />Email</label>
-        <Field type="email" id="email" name="email" className={css.input} />
+        <Field type="email" id="email" name="email" placeholder="Enter your email" className={css.input} />
         <ErrorMessage name="email" component="div" className={css.error} />
 
         <label className={css.label} htmlFor="password" ><RiLockPasswordFill />Password</label>
-        <Field type="password" id="password" name="password" className={css.input} />
+        <Field type="password" id="password" name="password" placeholder="Enter your password" className={css.input} />
         <ErrorMessage name="password" component="div" className={css.error} />
 
         <button type="submit" className={css.btn}>Register</button>

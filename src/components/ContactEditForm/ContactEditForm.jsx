@@ -55,7 +55,7 @@ const ContactEditForm = ({ id, name, number, onCancel, isOpen, onRequestClose })
           <Form className={css.form}>
             <div className={css.formcontainer}>
             <div className={css.fieldname}>
-              <label htmlFor="name" className={css.labelname}>
+              <label htmlFor="name" className={css.labelname} >
                 {" "}
                 <IoPerson />
                 Name
