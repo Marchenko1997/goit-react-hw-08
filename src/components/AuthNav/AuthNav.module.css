@@ -16,3 +16,7 @@
 .authlink:focus {
     color: #ceebf8;
 }
+
+.active {
+    color: #ceebf8;
+  }
