@@ -1,7 +1,6 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-
 export const fetchContactsAsync = createAsyncThunk(
   "contacts/fetchContacts",
   async (_, { rejectWithValue }) => {
@@ -38,13 +37,33 @@ export const deleteContactAsync = createAsyncThunk(
   }
 );
 
-// Define the async thunk to update a contact
 export const updateContactAsync = createAsyncThunk(
   "contacts/updateContact",
   async ({ id, name, number }, { rejectWithValue }) => {
     try {
       const response = await axios.patch(`/contacts/${id}`, { name, number });
       return response.data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const logOut = createAsyncThunk(
+  "auth/logOut",
+  async (_, { rejectWithValue, getState }) => {
+    try {
+      const { authToken } = getState().auth;
+
+      const headers = {
+        Authorization: authToken,
+      };
+
+      await axios.post("/users/logout", null, { headers });
+
+      localStorage.removeItem("authToken");
+
+      return true;
     } catch (error) {
       return rejectWithValue(error.message);
     }

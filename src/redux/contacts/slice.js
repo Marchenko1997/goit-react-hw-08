@@ -4,6 +4,7 @@ import {
   addContactAsync,
   deleteContactAsync,
   updateContactAsync,
+  logOut,
 } from "./operations";
 
 const initialState = {
@@ -17,7 +18,7 @@ const startAsyncOperation = (state) => {
   state.error = null;
 };
 
-const handleAsyncErrror = (state, action) => {
+const handleAsyncError = (state, action) => {
   state.loading = false;
   state.error = action.error.message;
 };
@@ -32,13 +33,13 @@ const contactsSlice = createSlice({
         state.loading = false;
         state.items = action.payload;
       })
-      .addCase(fetchContactsAsync.rejected, handleAsyncErrror)
+      .addCase(fetchContactsAsync.rejected, handleAsyncError)
       .addCase(addContactAsync.pending, startAsyncOperation)
       .addCase(addContactAsync.fulfilled, (state, action) => {
         state.loading = false;
         state.items.push(action.payload);
       })
-      .addCase(addContactAsync.rejected, handleAsyncErrror)
+      .addCase(addContactAsync.rejected, handleAsyncError)
       .addCase(deleteContactAsync.pending, startAsyncOperation)
       .addCase(deleteContactAsync.fulfilled, (state, action) => {
         state.loading = false;
@@ -46,7 +47,7 @@ const contactsSlice = createSlice({
           (contact) => contact.id !== action.payload.id
         );
       })
-      .addCase(deleteContactAsync.rejected, handleAsyncErrror)
+      .addCase(deleteContactAsync.rejected, handleAsyncError)
       .addCase(updateContactAsync.pending, startAsyncOperation)
       .addCase(updateContactAsync.fulfilled, (state, action) => {
         state.loading = false;
@@ -54,7 +55,10 @@ const contactsSlice = createSlice({
           contact.id === action.payload.id ? action.payload : contact
         );
       })
-      .addCase(updateContactAsync.rejected, handleAsyncErrror);
+      .addCase(updateContactAsync.rejected, handleAsyncError)
+      .addCase(logOut.fulfilled, (state) => {
+        state.items = [];
+      });
   },
 });
 
