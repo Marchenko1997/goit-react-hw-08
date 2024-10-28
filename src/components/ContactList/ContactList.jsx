@@ -1,8 +1,8 @@
 import Contact from "../Contact/Contact";
-import css from "./ContactList.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteContactAsync } from "../../redux/contacts/operations";
 import { selectFilteredContacts } from "../../redux/filters/selectors";
+import {List, ListItem} from "@mui/material";
 
 const ContactList = () => {
   const dispatch = useDispatch();
@@ -13,10 +13,10 @@ const ContactList = () => {
   };
 
   return (
-    <ul className={css.contactlist}>
+    <List>
       {Array.isArray(filteredContacts) &&
         filteredContacts.map((contact) => (
-          <li key={contact.id} className={css.contactitem}>
+          <ListItem key={contact.id} >
             {contact.name && contact.number && (
               <Contact
                 id={contact.id}
@@ -25,9 +25,9 @@ const ContactList = () => {
                 handleDelete={() => handleDelete(contact.id)}
               />
             )}
-          </li>
+          </ListItem>
         ))}
-    </ul>
+    </List>
   );
 };
 

@@ -1,32 +1,36 @@
-import { useState } from 'react';
-import PropTypes from 'prop-types';
-import css from "./Contact.module.css";
-import { BsFillPersonFill } from "react-icons/bs";
-import { FaPhone } from "react-icons/fa";
+import { useState } from "react";
+import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { deleteContactAsync } from "../../redux/contacts/operations";
-import { toast } from 'react-hot-toast';
-import Modal from 'react-modal';
+import { toast } from "react-hot-toast";
+import {
+  Card,
+  CardContent,
+  CardActions,
+  Typography,
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogActions,
+  Box,
+} from "@mui/material";
+import { BsFillPersonFill } from "react-icons/bs";
+import { FaPhone } from "react-icons/fa";
 import ContactEditForm from "../ContactEditForm/ContactEditForm";
-import { MdOutlineAutoDelete } from "react-icons/md";
-import { MdDeleteForever } from "react-icons/md";
 
-Modal.setAppElement('#root');
-
-const Contact = ({ id, name = '', number = '' }) => {
+const Contact = ({ id, name = "", number = "" }) => {
   const dispatch = useDispatch();
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isEditFormOpen, setIsEditFormOpen] = useState(false);
 
   const handleDelete = () => {
     setIsDeleteModalOpen(true);
-    setIsEditFormOpen(false); 
   };
 
   const confirmDelete = () => {
     dispatch(deleteContactAsync(id));
     setIsDeleteModalOpen(false);
-    toast.success('Contact deleted successfully.');
+    toast.success("Contact deleted successfully.");
   };
 
   const closeDeleteModal = () => {
@@ -34,61 +38,77 @@ const Contact = ({ id, name = '', number = '' }) => {
   };
 
   return (
-    <div>
-      <p className={css.itemname}>
-        <BsFillPersonFill /> {name}
-      </p>
-      <p className={css.itemnumber}>
-        <FaPhone /> {number}
-      </p>
+    <Card
+      variant="outlined"
+      sx={{ width: 300, borderRadius: 2, boxShadow: 3, marginTop: 2 }}
+    >
+      <CardContent>
+        <Box sx={{ display: "flex", alignItems: "center", mb: 1 }}>
+          <BsFillPersonFill style={{ marginRight: 8 }} />
+          <Typography variant="h6" component="div" fontWeight="bold">
+            {name}
+          </Typography>
+        </Box>
+        <Box sx={{ display: "flex", alignItems: "center" }}>
+          <FaPhone style={{ marginRight: 8 }} />
+          <Typography variant="body2" color="text.secondary">
+            {number}
+          </Typography>
+        </Box>
+      </CardContent>
+      <CardActions sx={{ display: "flex", gap: 2, padding: 2 }}>
+        <Button
+          variant="contained"
+          color="primary"
+          size="small"
+          onClick={handleDelete}
+          sx={{ backgroundColor: "#1976d2", color: "#fff" }}
+        >
+          Delete
+        </Button>
+        <Button
+          variant="contained"
+          color="primary"
+          size="small"
+          onClick={() => setIsEditFormOpen(true)}
+          sx={{ backgroundColor: "#1976d2", color: "#fff" }}
+        >
+          Edit
+        </Button>
+      </CardActions>
 
-      <button
-        type='button'
-        onClick={handleDelete}
-        aria-label='delete'
-        className={css.btndelete}
+      <Dialog
+        open={isDeleteModalOpen}
+        onClose={closeDeleteModal}
+        sx={{
+          "& .MuiDialog-paper": {
+            display: "flex",
+            alignItems: "left",
+            justifyContent: "left",
+            padding: 2,
+            maxWidth: "400px", 
+            margin: "auto", 
+          },
+        }}
       >
-        Delete
-      </button>
+        <DialogTitle>Are you sure you want to delete {name}?</DialogTitle>
+        <DialogActions
+          sx={{ display: "flex", gap: 2 }}
+        >
+          <Button onClick={confirmDelete} color="error" variant="contained">
+            Yes
+          </Button>
+          <Button
+            onClick={closeDeleteModal}
+            color="primary"
+            variant="contained"
+          >
+            No
+          </Button>
+        </DialogActions>
+      </Dialog>
 
-      <button
-        type='button'
-        onClick={() => setIsEditFormOpen(true)}
-        aria-label='edit'
-        className={css.btnedit}
-      >
-        Edit
-      </button>
-
-      <Modal
-        isOpen={isDeleteModalOpen}
-        onRequestClose={closeDeleteModal}
-        className={css.modal}
-        overlayClassName={css.overlay}
-        contentLabel="Delete Contact Modal"
-    
-      >
-        <div className={css.modalOverlay} onClick={closeDeleteModal}>
-          <div className={css.modalContent}>
-
-          <p className={css.modalText}>Are you sure you want to delete {name}?
-       </p>
-           
-            <div className={css.modalButtons}>
-              <button onClick={confirmDelete} className={css.yesButton}>
-              <MdOutlineAutoDelete className={css.deleteIcon} />
-              </button>
-              <button
-                onClick={closeDeleteModal}
-                className={css.noButton}
-              >
-              <MdDeleteForever className={css.deleteIcontwo} />
-              </button>
-            </div>
-          </div>
-        </div>
-      </Modal>
-
+     
       {isEditFormOpen && (
         <ContactEditForm
           id={id}
@@ -99,7 +119,7 @@ const Contact = ({ id, name = '', number = '' }) => {
           onRequestClose={() => setIsEditFormOpen(false)}
         />
       )}
-    </div>
+    </Card>
   );
 };
 

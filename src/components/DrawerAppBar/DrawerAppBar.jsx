@@ -37,7 +37,7 @@ export default function DrawerAppBar() {
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <Typography variant="h6" sx={{ my: 2 }}>
-        MUI
+        Phone Book
       </Typography>
       <List>
         {(isLoggedIn ? navItemsLoggedIn : navItemsLoggedOut).map((item) => (
@@ -82,7 +82,7 @@ export default function DrawerAppBar() {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
-            {isLoggedIn ? `Welcome, ${user.name}` : "MUI"}
+            {isLoggedIn ? `Welcome, ${user.name}` : "Phone Book"}
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" }, gap: 2 }}>
             {(isLoggedIn ? navItemsLoggedIn : navItemsLoggedOut).map((item) => (

@@ -1,14 +1,24 @@
-import Modal from 'react-modal';
+
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { updateContactAsync } from "../../redux/contacts/operations";
 import toast, { Toaster } from "react-hot-toast";
 import PropTypes from 'prop-types';
-import css from "./ContactEditForm.module.css";
+
 import { IoPerson } from "react-icons/io5";
 import { FaPhone } from "react-icons/fa6";
 import { IoMdCloseCircleOutline } from "react-icons/io";
+import {
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Button,
+  TextField,
+  IconButton,
+  Box,
+} from "@mui/material";
 
 const FeedbackSchema = Yup.object().shape({
     name: Yup.string()
@@ -37,13 +47,23 @@ const ContactEditForm = ({ id, name, number, onCancel, isOpen, onRequestClose })
   };
 
   return (
-    <Modal
-      isOpen={isOpen}
-      onRequestClose={onRequestClose}
-      className={css.modal}
-      overlayClassName={css.overlay}
-      contentLabel="Edit Contact Modal"
-    >
+    <Dialog open={isOpen} onClose={onRequestClose} fullWidth maxWidth="sm">
+      <DialogTitle
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
+        Edit Contact
+        <IconButton
+          onClick={onCancel}
+          color="error"
+          sx={{ position: "absolute", right: 8, top: 8 }}
+        >
+          <IoMdCloseCircleOutline />
+        </IconButton>
+      </DialogTitle>
       <Formik
         initialValues={{ name, number }}
         onSubmit={(values, actions) => {
@@ -52,54 +72,57 @@ const ContactEditForm = ({ id, name, number, onCancel, isOpen, onRequestClose })
         validationSchema={FeedbackSchema}
       >
         {({ isSubmitting }) => (
-          <Form className={css.form}>
-            <div className={css.formcontainer}>
-            <div className={css.fieldname}>
-              <label htmlFor="name" className={css.labelname} >
-                {" "}
-                <IoPerson />
-                Name
-              </label>
-              <Field
-                type="text"
-                name="name"
-                autoComplete="name"
-                className={css.inputname}
-              />
-              <ErrorMessage name="name" component="div" className={css.error} />
-            </div>
-
-            <div>
-              <label htmlFor="number" className={css.labelnumber}>
-                {" "}
-                <FaPhone />
-                Number
-              </label>
-              <Field
-                type="text"
-                name="number"
-                autoComplete="tel"
-                className={css.inputnumber}
-              />
-              <ErrorMessage name="number" component="div" className={css.error} />
-            </div>
-            <button
-              type="submit"
-              className={css.btnaddcontact}
-              disabled={isSubmitting}
-            >
-              Update contact
-            </button>
-
-            <button type="button" onClick={onCancel} className={css.btncancel}>
-              <IoMdCloseCircleOutline className={css.closeicon} />
-            </button>
-            </div>
+          <Form>
+            <DialogContent sx={{ padding: 3 }}>
+              <Box sx={{ mb: 2 }}>
+                <Field
+                  as={TextField}
+                  name="name"
+                  label="Name"
+                  fullWidth
+                  variant="outlined"
+                  margin="dense"
+                  InputProps={{
+                    startAdornment: <IoPerson style={{ marginRight: 8 }} />,
+                  }}
+                  helperText={<ErrorMessage name="name" />}
+                  error={Boolean(ErrorMessage.name)}
+                />
+              </Box>
+              <Box sx={{ mb: 2 }}>
+                <Field
+                  as={TextField}
+                  name="number"
+                  label="Number"
+                  fullWidth
+                  variant="outlined"
+                  margin="dense"
+                  InputProps={{
+                    startAdornment: <FaPhone style={{ marginRight: 8 }} />,
+                  }}
+                  helperText={<ErrorMessage name="number" />}
+                  error={Boolean(ErrorMessage.number)}
+                />
+              </Box>
+            </DialogContent>
+            <DialogActions sx={{ padding: 2 }}>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                disabled={isSubmitting}
+              >
+                Update contact
+              </Button>
+              <Button onClick={onCancel} variant="outlined" color="error">
+                Cancel
+              </Button>
+            </DialogActions>
             <Toaster />
           </Form>
         )}
       </Formik>
-    </Modal>
+    </Dialog>
   );
 };
 
